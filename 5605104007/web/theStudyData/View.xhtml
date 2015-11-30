@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTheStudyDataTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTheStudyDataLabel_IDResults}"/>
+                    <h:outputText value="#{theStudyDataController.selected.IDResults}" title="#{bundle.ViewTheStudyDataTitle_IDResults}"/>
+                    <h:outputText value="#{bundle.ViewTheStudyDataLabel_credit}"/>
+                    <h:outputText value="#{theStudyDataController.selected.credit}" title="#{bundle.ViewTheStudyDataTitle_credit}"/>
+                    <h:outputText value="#{bundle.ViewTheStudyDataLabel_score}"/>
+                    <h:outputText value="#{theStudyDataController.selected.score}" title="#{bundle.ViewTheStudyDataTitle_score}"/>
+                    <h:outputText value="#{bundle.ViewTheStudyDataLabel_gpa}"/>
+                    <h:outputText value="#{theStudyDataController.selected.gpa}" title="#{bundle.ViewTheStudyDataTitle_gpa}"/>
+                    <h:outputText value="#{bundle.ViewTheStudyDataLabel_year}"/>
+                    <h:outputText value="#{theStudyDataController.selected.year}" title="#{bundle.ViewTheStudyDataTitle_year}"/>
+                    <h:outputText value="#{bundle.ViewTheStudyDataLabel_IDCourse}"/>
+                    <h:outputText value="#{theStudyDataController.selected.IDCourse}" title="#{bundle.ViewTheStudyDataTitle_IDCourse}"/>
+                    <h:outputText value="#{bundle.ViewTheStudyDataLabel_IDStaff}"/>
+                    <h:outputText value="#{theStudyDataController.selected.IDStaff}" title="#{bundle.ViewTheStudyDataTitle_IDStaff}"/>
+                    <h:outputText value="#{bundle.ViewTheStudyDataLabel_IDStudent}"/>
+                    <h:outputText value="#{theStudyDataController.selected.IDStudent}" title="#{bundle.ViewTheStudyDataTitle_IDStudent}"/>
+                    <h:outputText value="#{bundle.ViewTheStudyDataLabel_results}"/>
+                    <h:outputText value="#{theStudyDataController.selected.results}" title="#{bundle.ViewTheStudyDataTitle_results}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{theStudyDataController.destroyAndView}" value="#{bundle.ViewTheStudyDataDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTheStudyDataEditLink}"/>
+                <br />
+                <h:commandLink action="#{theStudyDataController.prepareCreate}" value="#{bundle.ViewTheStudyDataCreateLink}" />
+                <br />
+                <h:commandLink action="#{theStudyDataController.prepareList}" value="#{bundle.ViewTheStudyDataShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewTheStudyDataIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

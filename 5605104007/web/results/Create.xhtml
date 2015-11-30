@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateResultsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateResultsLabel_IDResults}" for="IDResults" />
+                    <h:inputText id="IDResults" value="#{resultsController.selected.IDResults}" title="#{bundle.CreateResultsTitle_IDResults}" required="true" requiredMessage="#{bundle.CreateResultsRequiredMessage_IDResults}"/>
+                    <h:outputLabel value="#{bundle.CreateResultsLabel_gradeLevel}" for="gradeLevel" />
+                    <h:inputText id="gradeLevel" value="#{resultsController.selected.gradeLevel}" title="#{bundle.CreateResultsTitle_gradeLevel}" />
+                    <h:outputLabel value="#{bundle.CreateResultsLabel_GPAas}" for="GPAas" />
+                    <h:inputText id="GPAas" value="#{resultsController.selected.GPAas}" title="#{bundle.CreateResultsTitle_GPAas}" />
+                    <h:outputLabel value="#{bundle.CreateResultsLabel_theStudyData}" for="theStudyData" />
+                    <h:selectOneMenu id="theStudyData" value="#{resultsController.selected.theStudyData}" title="#{bundle.CreateResultsTitle_theStudyData}" required="true" requiredMessage="#{bundle.CreateResultsRequiredMessage_theStudyData}">
+                        <f:selectItems value="#{theStudyDataController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{resultsController.create}" value="#{bundle.CreateResultsSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{resultsController.prepareList}" value="#{bundle.CreateResultsShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateResultsIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

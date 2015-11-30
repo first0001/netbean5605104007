@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateStaffInformationTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateStaffInformationLabel_IDStaff}" for="IDStaff" />
+                    <h:inputText id="IDStaff" value="#{staffInformationController.selected.IDStaff}" title="#{bundle.CreateStaffInformationTitle_IDStaff}" required="true" requiredMessage="#{bundle.CreateStaffInformationRequiredMessage_IDStaff}"/>
+                    <h:outputLabel value="#{bundle.CreateStaffInformationLabel_nameStaff}" for="nameStaff" />
+                    <h:inputText id="nameStaff" value="#{staffInformationController.selected.nameStaff}" title="#{bundle.CreateStaffInformationTitle_nameStaff}" />
+                    <h:outputLabel value="#{bundle.CreateStaffInformationLabel_address}" for="address" />
+                    <h:inputText id="address" value="#{staffInformationController.selected.address}" title="#{bundle.CreateStaffInformationTitle_address}" />
+                    <h:outputLabel value="#{bundle.CreateStaffInformationLabel_telephoneNumbers}" for="telephoneNumbers" />
+                    <h:inputText id="telephoneNumbers" value="#{staffInformationController.selected.telephoneNumbers}" title="#{bundle.CreateStaffInformationTitle_telephoneNumbers}" />
+                    <h:outputLabel value="#{bundle.CreateStaffInformationLabel_salary}" for="salary" />
+                    <h:inputText id="salary" value="#{staffInformationController.selected.salary}" title="#{bundle.CreateStaffInformationTitle_salary}" />
+                    <h:outputLabel value="#{bundle.CreateStaffInformationLabel_position}" for="position" />
+                    <h:inputText id="position" value="#{staffInformationController.selected.position}" title="#{bundle.CreateStaffInformationTitle_position}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{staffInformationController.create}" value="#{bundle.CreateStaffInformationSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{staffInformationController.prepareList}" value="#{bundle.CreateStaffInformationShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateStaffInformationIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

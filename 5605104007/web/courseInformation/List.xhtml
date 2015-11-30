@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListCourseInformationTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListCourseInformationEmpty}" rendered="#{courseInformationController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{courseInformationController.items.rowCount > 0}">
+                    <h:outputText value="#{courseInformationController.pagination.pageFirstItem + 1}..#{courseInformationController.pagination.pageLastItem + 1}/#{courseInformationController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{courseInformationController.previous}" value="#{bundle.Previous} #{courseInformationController.pagination.pageSize}" rendered="#{courseInformationController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{courseInformationController.next}" value="#{bundle.Next} #{courseInformationController.pagination.pageSize}" rendered="#{courseInformationController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{courseInformationController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCourseInformationTitle_IDCourse}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.IDCourse}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCourseInformationTitle_nameCourse}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nameCourse}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCourseInformationTitle_numberCredit}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.numberCredit}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCourseInformationTitle_hoursLearning}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.hoursLearning}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{courseInformationController.prepareView}" value="#{bundle.ListCourseInformationViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{courseInformationController.prepareEdit}" value="#{bundle.ListCourseInformationEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{courseInformationController.destroy}" value="#{bundle.ListCourseInformationDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{courseInformationController.prepareCreate}" value="#{bundle.ListCourseInformationCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListCourseInformationIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

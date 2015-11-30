@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListTheStudyDataTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListTheStudyDataEmpty}" rendered="#{theStudyDataController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{theStudyDataController.items.rowCount > 0}">
+                    <h:outputText value="#{theStudyDataController.pagination.pageFirstItem + 1}..#{theStudyDataController.pagination.pageLastItem + 1}/#{theStudyDataController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{theStudyDataController.previous}" value="#{bundle.Previous} #{theStudyDataController.pagination.pageSize}" rendered="#{theStudyDataController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{theStudyDataController.next}" value="#{bundle.Next} #{theStudyDataController.pagination.pageSize}" rendered="#{theStudyDataController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{theStudyDataController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTheStudyDataTitle_IDResults}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.IDResults}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTheStudyDataTitle_credit}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.credit}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTheStudyDataTitle_score}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.score}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTheStudyDataTitle_gpa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.gpa}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTheStudyDataTitle_year}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.year}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTheStudyDataTitle_IDCourse}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.IDCourse}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTheStudyDataTitle_IDStaff}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.IDStaff}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTheStudyDataTitle_IDStudent}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.IDStudent}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTheStudyDataTitle_results}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.results}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{theStudyDataController.prepareView}" value="#{bundle.ListTheStudyDataViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{theStudyDataController.prepareEdit}" value="#{bundle.ListTheStudyDataEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{theStudyDataController.destroy}" value="#{bundle.ListTheStudyDataDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{theStudyDataController.prepareCreate}" value="#{bundle.ListTheStudyDataCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListTheStudyDataIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateTheStudyDataTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateTheStudyDataLabel_IDResults}" for="IDResults" />
+                    <h:inputText id="IDResults" value="#{theStudyDataController.selected.IDResults}" title="#{bundle.CreateTheStudyDataTitle_IDResults}" required="true" requiredMessage="#{bundle.CreateTheStudyDataRequiredMessage_IDResults}"/>
+                    <h:outputLabel value="#{bundle.CreateTheStudyDataLabel_credit}" for="credit" />
+                    <h:inputText id="credit" value="#{theStudyDataController.selected.credit}" title="#{bundle.CreateTheStudyDataTitle_credit}" />
+                    <h:outputLabel value="#{bundle.CreateTheStudyDataLabel_score}" for="score" />
+                    <h:inputText id="score" value="#{theStudyDataController.selected.score}" title="#{bundle.CreateTheStudyDataTitle_score}" />
+                    <h:outputLabel value="#{bundle.CreateTheStudyDataLabel_gpa}" for="gpa" />
+                    <h:inputText id="gpa" value="#{theStudyDataController.selected.gpa}" title="#{bundle.CreateTheStudyDataTitle_gpa}" />
+                    <h:outputLabel value="#{bundle.CreateTheStudyDataLabel_year}" for="year" />
+                    <h:inputText id="year" value="#{theStudyDataController.selected.year}" title="#{bundle.CreateTheStudyDataTitle_year}" />
+                    <h:outputLabel value="#{bundle.CreateTheStudyDataLabel_IDCourse}" for="IDCourse" />
+                    <h:selectOneMenu id="IDCourse" value="#{theStudyDataController.selected.IDCourse}" title="#{bundle.CreateTheStudyDataTitle_IDCourse}" required="true" requiredMessage="#{bundle.CreateTheStudyDataRequiredMessage_IDCourse}">
+                        <f:selectItems value="#{courseInformationController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateTheStudyDataLabel_IDStaff}" for="IDStaff" />
+                    <h:selectOneMenu id="IDStaff" value="#{theStudyDataController.selected.IDStaff}" title="#{bundle.CreateTheStudyDataTitle_IDStaff}" required="true" requiredMessage="#{bundle.CreateTheStudyDataRequiredMessage_IDStaff}">
+                        <f:selectItems value="#{staffInformationController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateTheStudyDataLabel_IDStudent}" for="IDStudent" />
+                    <h:selectOneMenu id="IDStudent" value="#{theStudyDataController.selected.IDStudent}" title="#{bundle.CreateTheStudyDataTitle_IDStudent}" required="true" requiredMessage="#{bundle.CreateTheStudyDataRequiredMessage_IDStudent}">
+                        <f:selectItems value="#{studentInformationController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateTheStudyDataLabel_results}" for="results" />
+                    <h:selectOneMenu id="results" value="#{theStudyDataController.selected.results}" title="#{bundle.CreateTheStudyDataTitle_results}" >
+                        <f:selectItems value="#{resultsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{theStudyDataController.create}" value="#{bundle.CreateTheStudyDataSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{theStudyDataController.prepareList}" value="#{bundle.CreateTheStudyDataShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateTheStudyDataIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
